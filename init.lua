@@ -36,7 +36,9 @@ function slopes.register_slope(subname, recipeitem, groups, images, description,
 		selection_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.1875, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 
@@ -44,8 +46,8 @@ function slopes.register_slope(subname, recipeitem, groups, images, description,
 			type = "fixed",
 			fixed = {
 			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
-			  {-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
-			  {-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.1875, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 		on_place = minetest.rotate_node
@@ -86,6 +88,7 @@ function slopes.register_slopeinsidecorner(subname, recipeitem, groups, images, 
 			fixed = {
 				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+				{-0.5, 0, -0.5, 0, 0.5, 0},
 			},
 		},
 		collision_box = {
@@ -93,6 +96,7 @@ function slopes.register_slopeinsidecorner(subname, recipeitem, groups, images, 
 			fixed = {
 				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+				{-0.5, 0, -0.5, 0, 0.5, 0},
 			},
 		},
 		on_place = minetest.rotate_node
@@ -133,6 +137,7 @@ function slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images,
 			fixed = {
 				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+				{-0.5, 0, -0.5, 0, 0.5, 0},
 			},
 		},
 		collision_box = {
@@ -140,6 +145,7 @@ function slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images,
 			fixed = {
 				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
 				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+				{-0.5, 0, -0.5, 0, 0.5, 0},
 			},
 		},
 		on_place = minetest.rotate_node
@@ -179,16 +185,18 @@ function slopes.register_slopecorner(subname, recipeitem, groups, images, descri
 		selection_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.1875, -0.1875,  0.1875, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875,  -0.1875, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 
 		collision_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
-			{-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
-			{-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.1875, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 		on_place = minetest.rotate_node
@@ -226,16 +234,18 @@ function slopes.register_slopecorner2(subname, recipeitem, groups, images, descr
 		selection_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.1875, -0.1875,  0.1875, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875,  -0.1875, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 
 		collision_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
-			{-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
-			{-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.1875, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, 0.1875, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 		on_place = minetest.rotate_node
