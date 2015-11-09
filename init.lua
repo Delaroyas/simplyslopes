@@ -12,6 +12,9 @@ slopes.leaves = default.node_sound_leaves_defaults()
 
 -- Node will be called slopes:slope_<subname>
 function slopes.register_slope(subname, recipeitem, groups, images, description, snds)
+	
+	--x=minetest.registered_nodes[1].images,
+	
 	minetest.register_node(":slopes:slope_" .. subname, {
 		description = description.." Slope",
 --		drawtype = "nodebox",
@@ -40,9 +43,9 @@ function slopes.register_slope(subname, recipeitem, groups, images, description,
 		collision_box = {
 			type = "fixed",
 			fixed = {
-			{-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
-			{-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
-			{-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
+			  {-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			  {-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			  {-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
 			},
 		},
 		on_place = minetest.rotate_node
@@ -105,6 +108,53 @@ function slopes.register_slopeinsidecorner(subname, recipeitem, groups, images, 
 	})
 end
 
+-- Node will be called slopes:slopeinsidecorner2_<subname>
+function slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, description, snds)
+	minetest.register_node(":slopes:slopeinsidecorner2_" .. subname, {
+		description = description.." Slope inside 2 corner",
+--		drawtype = "nodebox",
+		drawtype = "mesh",
+		mesh = "slopes_slopeinsidecorner2.obj",
+		tiles = images,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = groups,
+		sounds = snds,
+--		node_box = {
+--			type = "fixed",
+--			fixed = {
+--				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+--				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+--			},
+--		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+			},
+		},
+		collision_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+			},
+		},
+		on_place = minetest.rotate_node
+	})
+
+	minetest.register_craft({
+		output = 'slopes:slopeinsidecorner2_' .. subname .. ' 6',
+		recipe = {
+			{recipeitem, recipeitem, ""},
+			{"", "", recipeitem},
+			{recipeitem,"", recipeitem},
+		},
+	})
+end
+
 
 -- Node will be called slopes:slopecorner_<subname>
 function slopes.register_slopecorner(subname, recipeitem, groups, images, description, snds)
@@ -159,6 +209,7 @@ function slopes.register_all(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slope(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slopecorner(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slopeinsidecorner(subname, recipeitem, groups, images, desc, snds)
+slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, desc, snds)
 end
 
 -- Helper
