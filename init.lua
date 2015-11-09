@@ -203,11 +203,58 @@ function slopes.register_slopecorner(subname, recipeitem, groups, images, descri
 	})
 end
 
+-- Node will be called slopes:slopecorner_<subname>
+function slopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
+	minetest.register_node(":slopes:slopecorner2_" .. subname, {
+		description = description.." Slope corner",
+--		drawtype = "nodebox",
+		drawtype = "mesh",
+		mesh = "slopes_slopecorner2.obj",
+		tiles = images,
+		paramtype = "light",
+		paramtype2 = "facedir",
+		is_ground_content = false,
+		groups = groups,
+		sounds = snds,
+--		node_box = {
+--			type = "fixed",
+--			fixed = {
+--				{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+--				{-0.5, 0, 0, 0.5, 0.5, 0.5},
+--			},
+--		},
+		selection_box = {
+			type = "fixed",
+			fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}, -- NodeBox2
+			},
+		},
+
+		collision_box = {
+			type = "fixed",
+			fixed = {
+			{-0.5, -0.5, -0.5, 0.5, -0.1875, 0.5}, -- NodeBox1
+			{-0.5, -0.5, -0.1875, 0.5, 0.1875, 0.5}, -- NodeBox3
+			{-0.5, -0.5, 0.1875, 0.5, 0.5, 0.5}, -- NodeBox2
+			},
+		},
+		on_place = minetest.rotate_node
+	})
+
+	minetest.register_craft({
+		output = 'slopes:slopecorner2_' .. subname .. ' 6',
+		recipe = {
+			{ "",recipeitem, ""},
+			{"",recipeitem,recipeitem},
+		},
+	})
+end
 
 -- Nodes will be called slopes:{stair,slab,corner,invcorner}_<subname>
 function slopes.register_all(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slope(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slopecorner(subname, recipeitem, groups, images, desc, snds)
+slopes.register_slopecorner2(subname, recipeitem, groups, images, desc, snds)
 	slopes.register_slopeinsidecorner(subname, recipeitem, groups, images, desc, snds)
 slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, desc, snds)
 end
