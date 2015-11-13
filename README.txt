@@ -1,5 +1,9 @@
-Slopes 0.1 based on Minetest 0.4 mod: stairs
+Simply Slopes 0.1.1 
 by Delaroyas
+
+This mod has been created by Delaroyas to include slopes, corner slopes etc...
+
+Based on Minetest 0.4 mod: stairs by tenplus1
 
 License of source code:
 -----------------------
@@ -25,4 +29,3 @@ Everything not listed in here:
 Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
 
 
-Note: This mod has been changed by Delaroyas to include other blocks from different mods as well as slopes, corner slopes etc...
