@@ -113,7 +113,7 @@ function simplyslopes.register_slopeinsidecorner(subname, recipeitem, groups, im
 end
 
 -- Node will be called slopes:slopeinsidecorner2_<subname>
-function slopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, description, snds)
+function simplyslopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, description, snds)
 	minetest.register_node(":simplyslopes:slopeinsidecorner2_" .. subname, {
 		description = description.." Slope inside 2 corner",
 --		drawtype = "nodebox",
@@ -212,7 +212,7 @@ function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, 
 end
 
 -- Node will be called slopes:slopecorner_<subname>
-function slopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
+function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
 	minetest.register_node(":simplyslopes:slopecorner2_" .. subname, {
 		description = description.." Slope corner 2",
 --		drawtype = "nodebox",
