@@ -1,6 +1,7 @@
 default
-mobs?
 lapis?
-moreblocks?
 bakedclay?
 wool?
+mobs?
+
+
