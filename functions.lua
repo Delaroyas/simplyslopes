@@ -187,6 +187,7 @@ function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		is_ground_content = false,
+		sunlight_propagates = true,
 		groups = groups,
 		sounds = snds,
 

@@ -1,4 +1,4 @@
-Simply Slopes 0.1.2 
+Simply Slopes 0.1.3 
 by Delaroyas
 
 This mod has been created by Delaroyas to include slopes, corner slopes etc...
