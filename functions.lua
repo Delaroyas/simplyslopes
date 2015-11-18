@@ -229,4 +229,48 @@ function simplyslopes.register_all(subname, recipeitem, groups, images, desc, sn
 	simplyslopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, desc, snds)
 end
 
+-- Nodes will be called simplyslopes:{stair,slab,corner,invcorner}_<subname>
+function simplyslopes.register_all2(recipeitem)
+	local s = splitstring(recipeitem)
+	local modname=s[1]
+	local subname=s[2]
+	
+	-- Bakedclay and wool mod name their blocks like "bakedclay:white"
+	if  modname == 'bakedclay' or modname == 'wool'
+	-- We must add modname to subname	
+	then subname= modname .. '_' .. subname
+	end
+
+	--local thisnode=minetest.registered_nodes["default:wood"]
+	local thisnode=minetest.registered_nodes[recipeitem]
+	
+	
+	if thisnode == nil 
+	then	   -- thisnode is empty
+	
+	else
+		simplyslopes.register_slope(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
+		simplyslopes.register_slopecorner(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)		
+		simplyslopes.register_slopecorner2(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
+		simplyslopes.register_slopeinsidecorner(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
+		simplyslopes.register_slopeinsidecorner2(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
+	end
+
+
+end
+
+
+function splitstring(inputstr)
+        if sep == nil then
+                sep = "%s"
+        end
+	local sep = ':'
+        local t={} ; i=1
+        for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
+                t[i] = str
+                i = i + 1
+        end
+        return t
+end
+
 -- Helper

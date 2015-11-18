@@ -38,32 +38,14 @@ end
 
 --= Farming Mod
 if minetest.get_modpath("farming") then
-
-simplyslopes.register_all("straw", "farming:straw",
-	{snappy = 3, flammable = 4, not_in_craft_guide = 1},
-	{"farming_straw.png"},
-	"Straw",
-	simplyslopes.leaves)
-
+	simplyslopes.register_all2("farming:straw")
 end
+
 
 --= Mobs Mod
 if mobs and mobs.mod and mobs.mod == "redo" then
-
-grp = {crumbly = 3, flammable = 2, not_in_craft_guide = 1}
-
-simplyslopes.register_all("cheeseblock", "mobs:cheeseblock",
-	grp,
-	{"mobs_cheeseblock.png"},
-	"Cheese Block",
-	simplyslopes.dirt)
-
-simplyslopes.register_all("honey_block", "mobs:honey_block",
-	grp,
-	{"mobs_honey_block.png"},
-	"Honey Block",
-	simplyslopes.dirt)
-
+	simplyslopes.register_all2("mobs:cheeseblock")
+	simplyslopes.register_all2("mobs:honey_block")
 end
 
 
