@@ -1,20 +1,9 @@
 simplyslopes = {}
 simplyslopes.mod = "original"
 
-simplyslopes.wood = default.node_sound_wood_defaults()
-simplyslopes.dirt = default.node_sound_dirt_defaults()
-simplyslopes.stone = default.node_sound_stone_defaults()
-simplyslopes.glass = default.node_sound_glass_defaults()
-simplyslopes.leaves = default.node_sound_leaves_defaults()
---slopes.wool = default.node_sound_wool_defaults() -- Xanadu only
---slopes.wool = slopes.leaves
 	
 --= Load functions that creates the differents nodes.
 dofile(minetest.get_modpath("simplyslopes").."/functions.lua")
-
-
-local grp = {}
-
 
 --= Default Minetest
 dofile(minetest.get_modpath("simplyslopes").."/default_mod.lua")
@@ -41,11 +30,15 @@ if minetest.get_modpath("farming") then
 	simplyslopes.register_all2("farming:straw")
 end
 
-
 --= Mobs Mod
 if mobs and mobs.mod and mobs.mod == "redo" then
 	simplyslopes.register_all2("mobs:cheeseblock")
 	simplyslopes.register_all2("mobs:honey_block")
+end
+
+--= Castle Mod
+if minetest.get_modpath("castle") then
+	dofile(minetest.get_modpath("simplyslopes").."/castle_mod.lua")
 end
 
 
@@ -62,18 +55,13 @@ if minetest.get_modpath("xanadu") then
 	dofile(minetest.get_modpath("simplyslopes").."/xanadu_mod.lua")
 end
 
---= Castle Mod
---= Never made this mod work.
-if minetest.get_modpath("castle") then
-	dofile(minetest.get_modpath("simplyslopes").."/castle_mod.lua")
-end
+
 
 --= Ethereal Mod
 -- Never managed to make any blocks with this mod.
 if minetest.get_modpath("ethereal") then
 	dofile(minetest.get_modpath("simplyslopes").."/ethereal_mod.lua")
 end
-
 
 
 
