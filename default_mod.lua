@@ -5,6 +5,8 @@ simplyslopes.register_all2("default:dirt_with_grass")
 simplyslopes.register_all2("default:wood")
 simplyslopes.register_all2("default:junglewood")
 simplyslopes.register_all2("default:pinewood")
+simplyslopes.register_all2("default:acacia_wood")
+
 simplyslopes.register_all2("default:cobble")
 simplyslopes.register_all2("default:desert_cobble")
 simplyslopes.register_all2("default:cloud")
@@ -26,7 +28,9 @@ simplyslopes.register_all2("default:sandstonebrick")
 simplyslopes.register_all2("default:obsidian")
 simplyslopes.register_all2("default:stonebrick")
 simplyslopes.register_all2("default:desert_stonebrick")
-simplyslopes.register_all2("default:obsidianbrick") -- Node does not exist
+simplyslopes.register_all2("default:obsidianbrick") 
 
+simplyslopes.register_all2("default:snowblock")
+simplyslopes.register_all2("default:nyancat_rainbow")
 
 

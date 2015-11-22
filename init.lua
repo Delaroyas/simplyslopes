@@ -24,7 +24,6 @@ if minetest.get_modpath("wool") then
 	dofile(minetest.get_modpath("simplyslopes").."/wool_mod.lua")
 end
 
-
 --= Farming Mod
 if minetest.get_modpath("farming") then
 	simplyslopes.register_all2("farming:straw")
@@ -43,7 +42,6 @@ end
 
 
 --= Homedecor Mod
---= Never made this mod work.
 if minetest.get_modpath("homedecor") then
 	dofile(minetest.get_modpath("simplyslopes").."/homedecor_mod.lua")
 end
