@@ -39,7 +39,7 @@ function simplyslopes.register_slope(subname, recipeitem, groups, images, descri
 	
 	--x=minetest.registered_nodes[1].images,
 	
-	minetest.register_node(":simplyslopes:slope_" .. subname, {
+	minetest.register_node(":simplyslopes:" .. subname, {
 		description = description.." Slope",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
@@ -79,11 +79,12 @@ function simplyslopes.register_slope(subname, recipeitem, groups, images, descri
 			{"","",recipeitem},
 		},
 	})
+	minetest.register_alias("simplyslopes:slope_" .. subname, "simplyslopes:" .. subname)
 end
 
 -- Node will be called simplyslopes:slopeinsidecorner_<subname>
 function simplyslopes.register_slopeinsidecorner(subname, recipeitem, groups, images, description, snds)
-	minetest.register_node(":simplyslopes:slopeinsidecorner_" .. subname, {
+	minetest.register_node(":simplyslopes:inner_" .. subname, {
 		description = description.." Slope inside corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
@@ -115,18 +116,19 @@ function simplyslopes.register_slopeinsidecorner(subname, recipeitem, groups, im
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:slopeinsidecorner_' .. subname .. ' 5',
+		output = 'simplyslopes:inner_' .. subname .. ' 5',
 		recipe = {
 			{recipeitem, recipeitem, ""},
 			{"", "", recipeitem},
 			{"","", recipeitem},
 		},
 	})
+	minetest.register_alias("simplyslopes:slopeinsidecorner_" .. subname, "simplyslopes:inner_" .. subname)
 end
 
 -- Node will be called simplyslopes:slopeinsidecorner2_<subname>
 function simplyslopes.register_slopeinsidecorner2(subname, recipeitem, groups, images, description, snds)
-	minetest.register_node(":simplyslopes:slopeinsidecorner2_" .. subname, {
+	minetest.register_node(":simplyslopes:inner2_" .. subname, {
 		description = description.." Slope inside 2 corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
@@ -158,19 +160,20 @@ function simplyslopes.register_slopeinsidecorner2(subname, recipeitem, groups, i
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:slopeinsidecorner2_' .. subname .. ' 6',
+		output = 'simplyslopes:inner2_' .. subname .. ' 6',
 		recipe = {
 			{recipeitem, recipeitem, ""},
 			{"", "", recipeitem},
 			{recipeitem,"", recipeitem},
 		},
 	})
+	minetest.register_alias("simplyslopes:slopeinsidecorner2_" .. subname, "simplyslopes:inner2_" .. subname)
 end
 
 
 -- Node will be called simplyslopes:slopecorner_<subname>
 function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, description, snds)
-	minetest.register_node(":simplyslopes:slopecorner_" .. subname, {
+	minetest.register_node(":simplyslopes:outer_" .. subname, {
 		description = description.." Slope corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
@@ -203,17 +206,18 @@ function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, 
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:slopecorner_' .. subname .. ' 6',
+		output = 'simplyslopes:outer_' .. subname .. ' 6',
 		recipe = {
 			{ "",recipeitem, ""},
 			{recipeitem,"",recipeitem},
 		},
 	})
+	minetest.register_alias("simplyslopes:slopecorner_" .. subname, "simplyslopes:outer_" .. subname)
 end
 
 -- Node will be called simplyslopes:slopecorner_<subname>
 function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
-	minetest.register_node(":simplyslopes:slopecorner2_" .. subname, {
+	minetest.register_node(":simplyslopes:outer2_" .. subname, {
 		description = description.." Slope corner 2",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
@@ -247,12 +251,13 @@ function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images,
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:slopecorner2_' .. subname .. ' 6',
+		output = 'simplyslopes:outer2_' .. subname .. ' 6',
 		recipe = {
 			{ "",recipeitem, ""},
 			{"",recipeitem,recipeitem},
 		},
 	})
+	minetest.register_alias("simplyslopes:slopecorner2_" .. subname, "simplyslopes:outer2_" .. subname)
 end
 
 -- Nodes will be called simplyslopes:{stair,slab,corner,invcorner}_<subname>

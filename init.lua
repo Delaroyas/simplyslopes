@@ -9,6 +9,7 @@ dofile(minetest.get_modpath("simplyslopes").."/functions.lua")
 dofile(minetest.get_modpath("simplyslopes").."/default_mod.lua")
 
 
+
 --= Lapis Mod
 if minetest.get_modpath("lapis") then
 	dofile(minetest.get_modpath("simplyslopes").."/lapis_mod.lua")
@@ -44,6 +45,11 @@ end
 --= Homedecor Mod
 if minetest.get_modpath("homedecor") then
 	dofile(minetest.get_modpath("simplyslopes").."/homedecor_mod.lua")
+end
+
+--= MoreTrees Mod
+if minetest.get_modpath("moretrees") then
+	dofile(minetest.get_modpath("simplyslopes").."/moretrees_mod.lua")
 end
 
 
