@@ -1,4 +1,4 @@
-Simply Slopes 0.2
+Simply Slopes 0.2.1
 by Delaroyas
 
 This mod has been created by Delaroyas to include slopes, corner slopes etc...
@@ -11,8 +11,8 @@ The goal of this mod was to make my first mod, to get familiar with minetest pro
 There were similar (identical) blocks in moreblocks, but if you are looking for a light mod that just adds a few slopes, This is the mod for you.
 
 Mod dependencies: default
-Compatible mods: lapis, bakedclay, wool, mobs, castle, homedecor, moretrees. 
-Minetest version tested: 0.4.13 
+Compatible mods: lapis, bakedclay, wool, mobs, castle, homedecor, moretrees, ethereal. 
+Minetest version tested: 0.4.13 and 0.4.13-dev
 
 Source code :
 https://github.com/Delaroyas/simplyslopes/tree/master
@@ -22,7 +22,7 @@ Based on Minetest 0.4 mod: stairs by tenplus1
 
 License of source code:
 -----------------------
-2015- Stairs redo from tenplus1
+2015 - Stairs redo from tenplus1
 Copyright (C) 2011-2012 Kahrl <kahrl@gmx.net>
 Copyright (C) 2011-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
 

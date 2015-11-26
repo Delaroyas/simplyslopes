@@ -6,3 +6,4 @@ mobs?
 castle?
 homedecor?
 moretrees?
+ethereal?
