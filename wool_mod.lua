@@ -1,4 +1,3 @@
-
 -- Add slopes for blocks in the  
 -- Wool mod
 
