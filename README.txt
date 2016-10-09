@@ -1,4 +1,4 @@
-Simply Slopes 0.2.2
+Simply Slopes 0.3
 by Delaroyas
 
 This mod has been created by Delaroyas to include slopes, corner slopes etc...
@@ -12,7 +12,7 @@ There were similar (identical) blocks in moreblocks, but if you are looking for 
 
 Mod dependencies: default
 Compatible mods: lapis, bakedclay, wool, mobs, castle, homedecor, moretrees, ethereal, xanadu. 
-Minetest version tested: 0.4.13 and 0.4.13-dev
+Minetest version tested: 0.4.14 and 0.4.14-dev
 
 Source code :
 https://github.com/Delaroyas/simplyslopes/tree/master

@@ -8,6 +8,10 @@ dofile(minetest.get_modpath("simplyslopes").."/functions.lua")
 --= Default Minetest
 dofile(minetest.get_modpath("simplyslopes").."/default_mod.lua")
 
+--= Lapis Mod
+if minetest.get_modpath("candy") then
+	dofile(minetest.get_modpath("simplyslopes").."/candy_mod.lua")
+end
 
 
 --= Lapis Mod
@@ -28,6 +32,7 @@ end
 --= Farming Mod
 if minetest.get_modpath("farming") then
 	simplyslopes.register_all2("farming:straw")
+	simplyslopes.register_all2("farming:honey")
 end
 
 --= Mobs Mod

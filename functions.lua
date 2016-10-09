@@ -1,11 +1,29 @@
 
--- Nodes will be called simplyslopes:{'',outer,outer2,inner,inner2}_<subname>
+
+-- Boilerplate to support localized strings if intllib mod is installed.
+local S
+if (minetest.get_modpath("intllib")) then
+  dofile(minetest.get_modpath("intllib").."/intllib.lua")
+  S = intllib.Getter(minetest.get_current_modname())
+else
+  S = function ( s ) return s end
+end
+
+-- Nodes will be called simplyslopes:{'',outer_,outer2_,inner_,inner2_}<subname>
 function simplyslopes.register_all2(recipeitem)
+	
 	-- Todo 
-	-- remove "Block" and "Planks" form description;
-	local s = splitstring(recipeitem)
-	local modname=s[1]
-	local subname=s[2]
+	
+	local thisnode=minetest.registered_nodes[recipeitem]
+	if thisnode == nil 
+	then -- thisnode is empty, get out of here!
+		return
+	end
+
+	--create the new node "subname"	
+	local tmp = splitstring(recipeitem)
+	local modname=tmp[1]
+	local subname=tmp[2]
 	
 	-- Bakedclay and wool mod name their blocks like "bakedclay:white"
 	if  modname == 'bakedclay' or modname == 'wool'
@@ -13,34 +31,33 @@ function simplyslopes.register_all2(recipeitem)
 		then subname= modname .. '_' .. subname
 	end
 
-	--local thisnode=minetest.registered_nodes["default:wood"]
-	local thisnode=minetest.registered_nodes[recipeitem]
+	local desc = thisnode.description
+	-- remove "Block" and "Planks" form description;
+	desc=string.gsub(desc,'Block', '')
+	desc=string.gsub(desc,'Plank', ' ')
+	--desc=string.gsub(desc,'  ', ' ')
+	desc=string.gsub(desc,'%s+', ' ')
 	
-	
-	if thisnode == nil 
-	then	   -- thisnode is empty
-	
-	else
-		simplyslopes.register_slope(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
-		simplyslopes.register_slopecorner(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)		
-		simplyslopes.register_slopecorner2(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
-		simplyslopes.register_slopeinner(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
-		simplyslopes.register_slopeinner2(subname, recipeitem, thisnode.groups, thisnode.tiles, thisnode.description, thisnode.sounds)
-	end
+if (subname == nil)
+then error(recipeitem .. ", " .. modname..", "..subname)
+end
 
+	simplyslopes.register_slope(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
+	simplyslopes.register_slopecorner(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)		
+	simplyslopes.register_slopecorner2(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
+	simplyslopes.register_slopeinner(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
+	simplyslopes.register_slopeinner2(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
+	
 
 end
 
 
 
--- Node will be called simplyslopes:slope_<subname>
+-- Node will be called simplyslopes:<subname>
 function simplyslopes.register_slope(subname, recipeitem, groups, images, description, snds)
-	
-	--x=minetest.registered_nodes[1].images,
-	
+	newitem="simplyslopes:" .. subname,
 	minetest.register_node(":simplyslopes:" .. subname, {
-		description = description.." Slope",
---		drawtype = "nodebox",
+		description = S(description.." Slope"),
 		drawtype = "mesh",
 		mesh = "simplyslopes_slope.obj",
 		tiles = images,
@@ -71,21 +88,26 @@ function simplyslopes.register_slope(subname, recipeitem, groups, images, descri
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:slope_' .. subname .. ' 6',
+		output = newitem .. ' 6',
 		recipe = {
 			{recipeitem, "", ""},
 			{ "",recipeitem, ""},
 			{"","",recipeitem},
 		},
 	})
+	minetest.register_craft({
+		type = "shapeless" ,
+		output = recipeitem ..' 1',
+		recipe = {newitem, newitem},
+	})
 	minetest.register_alias("simplyslopes:slope_" .. subname, "simplyslopes:" .. subname)
 end
 
--- Node will be called simplyslopes:slopeinner_<subname>
+-- Node will be called simplyslopes:inner_<subname>
 function simplyslopes.register_slopeinner(subname, recipeitem, groups, images, description, snds)
+	newitem="simplyslopes:inner_" .. subname,
 	minetest.register_node(":simplyslopes:inner_" .. subname, {
-		description = description.." Slope inside corner",
---		drawtype = "nodebox",
+		description = description.." Inner Slope Corner",
 		drawtype = "mesh",
 		mesh = "simplyslopes_slopeinsidecorner.obj",
 		tiles = images,
@@ -114,21 +136,31 @@ function simplyslopes.register_slopeinner(subname, recipeitem, groups, images, d
 		on_place = minetest.rotate_node
 	})
 
+
 	minetest.register_craft({
-		output = 'simplyslopes:inner_' .. subname .. ' 5',
+		output = "simplyslopes:inner_" .. subname ..' 5',
 		recipe = {
 			{recipeitem, recipeitem, ""},
 			{"", "", recipeitem},
 			{"","", recipeitem},
 		},
 	})
+
+	minetest.register_craft({
+		type = "shapeless" ,
+		output = recipeitem ..' 4',
+		recipe = {newitem, newitem, newitem, newitem, newitem},
+	})
+
+
 	minetest.register_alias("simplyslopes:slopeinner_" .. subname, "simplyslopes:inner_" .. subname)
 end
 
--- Node will be called simplyslopes:slopeinner2_<subname>
+-- Node will be called simplyslopes:inner2_<subname>
 function simplyslopes.register_slopeinner2(subname, recipeitem, groups, images, description, snds)
+	newitem="simplyslopes:inner2_" .. subname,
 	minetest.register_node(":simplyslopes:inner2_" .. subname, {
-		description = description.." Slope inside 2 corner",
+		description = description.." Inner Slope Corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
 		mesh = "simplyslopes_slopeinsidecorner2.obj",
@@ -159,21 +191,28 @@ function simplyslopes.register_slopeinner2(subname, recipeitem, groups, images, 
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:inner2_' .. subname .. ' 6',
+		output = newitem .. ' 6',
 		recipe = {
 			{recipeitem, recipeitem, ""},
 			{"", "", recipeitem},
 			{recipeitem,"", recipeitem},
 		},
 	})
+	minetest.register_craft({
+		type = "shapeless" ,
+		output = recipeitem ..' 5',
+		recipe = {newitem, newitem, newitem, newitem, newitem, newitem},
+	})
+
 	minetest.register_alias("simplyslopes:slopeinsidecorner2_" .. subname, "simplyslopes:inner2_" .. subname)
 end
 
 
--- Node will be called simplyslopes:slopecorner_<subname>
+-- Node will be called simplyslopes:outer_<subname>
 function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, description, snds)
+	newitem="simplyslopes:outer_" .. subname,
 	minetest.register_node(":simplyslopes:outer_" .. subname, {
-		description = description.." Slope corner",
+		description = description.." Outer Slope Corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
 		mesh = "simplyslopes_slopecorner.obj",
@@ -205,19 +244,27 @@ function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, 
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:outer_' .. subname .. ' 6',
+		output = newitem .. ' 15',
 		recipe = {
 			{ "",recipeitem, ""},
 			{recipeitem,"",recipeitem},
 		},
+		minetest.register_craft({
+			type = "shapeless" ,
+			output = recipeitem ..' 1',
+			recipe = {newitem, newitem, newitem, newitem, newitem},
+		})
 	})
+
+
 	minetest.register_alias("simplyslopes:slopecorner_" .. subname, "simplyslopes:outer_" .. subname)
 end
 
--- Node will be called simplyslopes:slopecorner_<subname>
+-- Node will be called simplyslopes:outer2_<subname>
 function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
+	newitem="simplyslopes:outer2_" .. subname,
 	minetest.register_node(":simplyslopes:outer2_" .. subname, {
-		description = description.." Slope corner 2",
+		description = description.." Outer Slope Corner",
 --		drawtype = "nodebox",
 		drawtype = "mesh",
 		mesh = "simplyslopes_slopecorner2.obj",
@@ -250,12 +297,17 @@ function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images,
 	})
 
 	minetest.register_craft({
-		output = 'simplyslopes:outer2_' .. subname .. ' 6',
+		output = newitem .. ' 18',
 		recipe = {
 			{ "",recipeitem, ""},
 			{"",recipeitem,recipeitem},
 		},
 	})
+	minetest.register_craft({
+		type = "shapeless" ,
+		output = recipeitem ..' 1',
+		recipe = {newitem, newitem, newitem, newitem, newitem, newitem},
+		})
 	minetest.register_alias("simplyslopes:slopecorner2_" .. subname, "simplyslopes:outer2_" .. subname)
 end
 

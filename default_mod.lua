@@ -4,20 +4,6 @@
 
 simplyslopes.register_all2("default:dirt_with_grass")
 
---[[	minetest.register_alias("simplyslopes:slope_grass" , "simplyslopes:dirt_with_grass")
-	minetest.register_alias("slopes:slope_grass" , "simplyslopes:dirt_with_grass" )
-
-	minetest.register_alias("simplyslopes:slopecorner_grass" , "simplyslopes:outer_dirt_with_grass")
-	minetest.register_alias("slopes:slopecorner_grass" , "simplyslopes:outer_dirt_with_grass" )
-	minetest.register_alias("simplyslopes:slopecorner2_grass" , "simplyslopes:outer2_dirt_with_grass")
-	minetest.register_alias("slopes:slopecorner2_grass" , "simplyslopes:outer2_dirt_with_grass" )
-
-	minetest.register_alias("simplyslopes:slopeinsidecorner_grass" , "simplyslopes:inner_dirt_with_grass")
-	minetest.register_alias("slopes:slopeinsidecorner_grass" , "simplyslopes:inner_dirt_with_grass" )
-	minetest.register_alias("simplyslopes:slopeinsidecorner2_grass" , "simplyslopes:inner2_dirt_with_grass")
-	minetest.register_alias("slopes:slopeinsidecorner2_grass" , "simplyslopes:inner2_dirt_with_grass" )
---]]
-
 simplyslopes.register_all2("default:wood")
 simplyslopes.register_all2("default:junglewood")
 simplyslopes.register_all2("default:pinewood")

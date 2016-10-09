@@ -1,4 +1,6 @@
 default
+candy?
+intllib?
 lapis?
 bakedclay?
 wool?
