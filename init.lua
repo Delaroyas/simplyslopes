@@ -1,3 +1,5 @@
+print ("[MOD] SimplySlopes loading")
+
 simplyslopes = {}
 simplyslopes.mod = "original"
 
@@ -32,11 +34,10 @@ end
 --= Farming Mod
 if minetest.get_modpath("farming") then
 	simplyslopes.register_all2("farming:straw")
-	simplyslopes.register_all2("farming:honey")
 end
 
 --= Mobs Mod
-if mobs and mobs.mod and mobs.mod == "redo" then
+if minetest.get_modpath("mobs") and mobs and mobs.mod and mobs.mod == "redo" then
 	simplyslopes.register_all2("mobs:cheeseblock")
 	simplyslopes.register_all2("mobs:honey_block")
 end
@@ -63,7 +64,6 @@ end
 if minetest.get_modpath("xanadu") then
 	dofile(minetest.get_modpath("simplyslopes").."/xanadu_mod.lua")
 end
-
 
 
 --= Ethereal Mod

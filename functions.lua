@@ -21,7 +21,7 @@ function simplyslopes.register_all2(recipeitem)
 	end
 
 	--create the new node "subname"	
-	local tmp = splitstring(recipeitem)
+	local tmp = simplyslopes.splitstring(recipeitem)
 	local modname=tmp[1]
 	local subname=tmp[2]
 	
@@ -41,13 +41,11 @@ function simplyslopes.register_all2(recipeitem)
 if (subname == nil)
 then error(recipeitem .. ", " .. modname..", "..subname)
 end
-
 	simplyslopes.register_slope(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
 	simplyslopes.register_slopecorner(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)		
 	simplyslopes.register_slopecorner2(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
 	simplyslopes.register_slopeinner(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
 	simplyslopes.register_slopeinner2(subname, recipeitem, thisnode.groups, thisnode.tiles, desc, thisnode.sounds)
-	
 
 end
 
@@ -55,7 +53,7 @@ end
 
 -- Node will be called simplyslopes:<subname>
 function simplyslopes.register_slope(subname, recipeitem, groups, images, description, snds)
-	newitem="simplyslopes:" .. subname,
+	local newitem="simplyslopes:" .. subname,
 	minetest.register_node(":simplyslopes:" .. subname, {
 		description = S(description.." Slope"),
 		drawtype = "mesh",
@@ -105,7 +103,7 @@ end
 
 -- Node will be called simplyslopes:inner_<subname>
 function simplyslopes.register_slopeinner(subname, recipeitem, groups, images, description, snds)
-	newitem="simplyslopes:inner_" .. subname,
+	local newitem="simplyslopes:inner_" .. subname,
 	minetest.register_node(":simplyslopes:inner_" .. subname, {
 		description = description.." Inner Slope Corner",
 		drawtype = "mesh",
@@ -158,7 +156,7 @@ end
 
 -- Node will be called simplyslopes:inner2_<subname>
 function simplyslopes.register_slopeinner2(subname, recipeitem, groups, images, description, snds)
-	newitem="simplyslopes:inner2_" .. subname,
+	local newitem="simplyslopes:inner2_" .. subname,
 	minetest.register_node(":simplyslopes:inner2_" .. subname, {
 		description = description.." Inner Slope Corner",
 --		drawtype = "nodebox",
@@ -210,7 +208,7 @@ end
 
 -- Node will be called simplyslopes:outer_<subname>
 function simplyslopes.register_slopecorner(subname, recipeitem, groups, images, description, snds)
-	newitem="simplyslopes:outer_" .. subname,
+	local newitem="simplyslopes:outer_" .. subname,
 	minetest.register_node(":simplyslopes:outer_" .. subname, {
 		description = description.." Outer Slope Corner",
 --		drawtype = "nodebox",
@@ -262,7 +260,7 @@ end
 
 -- Node will be called simplyslopes:outer2_<subname>
 function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images, description, snds)
-	newitem="simplyslopes:outer2_" .. subname,
+	local newitem="simplyslopes:outer2_" .. subname,
 	minetest.register_node(":simplyslopes:outer2_" .. subname, {
 		description = description.." Outer Slope Corner",
 --		drawtype = "nodebox",
@@ -311,23 +309,12 @@ function simplyslopes.register_slopecorner2(subname, recipeitem, groups, images,
 	minetest.register_alias("simplyslopes:slopecorner2_" .. subname, "simplyslopes:outer2_" .. subname)
 end
 
---[[
--- Nodes will be called simplyslopes:{"","outer",corner,invcorner}_<subname>
-function simplyslopes.register_all(subname, recipeitem, groups, images, desc, snds)
-	simplyslopes.register_slope(subname, recipeitem, groups, images, desc, snds)
-	simplyslopes.register_slopecorner(subname, recipeitem, groups, images, desc, snds)
-	simplyslopes.register_slopecorner2(subname, recipeitem, groups, images, desc, snds)
-	simplyslopes.register_slopeinner(subname, recipeitem, groups, images, desc, snds)
-	simplyslopes.register_slopeinner2(subname, recipeitem, groups, images, desc, snds)
-end
---]]
 
-function splitstring(inputstr)
-        if sep == nil then
-                sep = "%s"
-        end
+-- Split string with the format mod:item to mod and item seperately
+function simplyslopes.splitstring(inputstr)
 	local sep = ':'
-        local t={} ; i=1
+        local t={}  
+	local i=1
         for str in string.gmatch(inputstr, "([^"..sep.."]+)") do
                 t[i] = str
                 i = i + 1
