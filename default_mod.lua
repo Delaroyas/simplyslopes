@@ -8,6 +8,7 @@ simplyslopes.register_all2("default:wood")
 simplyslopes.register_all2("default:junglewood")
 simplyslopes.register_all2("default:pinewood")
 simplyslopes.register_all2("default:acacia_wood")
+simplyslopes.register_all2("default:aspen_wood")
 
 simplyslopes.register_all2("default:cobble")
 simplyslopes.register_all2("default:desert_cobble")
